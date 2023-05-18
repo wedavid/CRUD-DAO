@@ -1,0 +1,35 @@
+select * from public.funcionarios f;
+select * from public.tipo_identificacion ti; 
+select * from public.estado_civil ec; 
+select * from public.grupo_familiar gf; 
+select * from public.informacion_academica ia; 
+
+
+
+-- Poblado de las tablas
+
+INSERT INTO public.tipo_identificacion (descripcion)
+VALUES ('Cédula'),
+('Tarjeta de Identidad'),
+('Pasaporte');
+
+INSERT INTO public.estado_civil (descripcion)
+VALUES ('Soltero(a)'),
+('Casado(a)'),
+('Divorciado(a)');
+
+INSERT INTO public.grupo_familiar (nombres, apellidos, telefono, rol)
+VALUES ('Gabriel', 'Lopez', '0101', 'Padre'),
+('Tatiana', 'Morales', '0202', 'Madre'),
+('Julian', 'Sanchez', '0303', 'Hermano');
+
+INSERT INTO public.informacion_academica (nombre_universidad, nivel_estudio, titulo)
+VALUES ('Universidad Nacional', 'pregrado', 'Ingeniero industrial'),
+('Universidad de Antioquia', 'Especializacion', 'Ingeniero de Sistemas'),
+('IUD Antioquia', 'Tecnologia', 'Desarrollador de Software');
+
+INSERT INTO public.funcionarios (tipo_identificacion_id, numero_identificacion, nombres, apellidos, estado_civil_id, sexo, direccion, telefono, fecha_de_nacimiento, grupo_familiar_id, informacion_academica_id) VALUES
+(1, '1111', 'Eduin', 'Echeverri', 1, 'M', 'Calle 25 # 6B-18', '1010', '11-10-1990', 1, 1),
+(2, '2222', 'Lida', 'Florez', 2, 'F', 'Cr 96 # 44-11', '2020', '24-07-1993', 2, 2),
+(3, '3333', 'Wilson', 'David', 3, 'M', 'Av. 27 # 55-93', '3030', '20-01-1988', 3, 3);
+

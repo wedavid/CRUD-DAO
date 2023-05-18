@@ -1,0 +1,55 @@
+-- Script de la base de datos
+
+CREATE TABLE public.funcionarios (
+	funcionario_id serial4 NOT NULL,
+	tipo_identificacion_id int NOT NULL,
+	numero_identificacion varchar NOT NULL,
+	nombres varchar NOT NULL,
+	apellidos varchar NOT NULL,
+	estado_civil_id int NOT NULL,
+	sexo varchar NOT NULL,
+	direccion varchar NOT NULL,
+	telefono varchar NOT NULL,
+	fecha_de_nacimiento date NOT NULL,
+	grupo_familiar_id int NOT NULL,
+	informacion_academica_id int NOT NULL
+);
+
+CREATE TABLE public.tipo_identificacion (
+	tipo_identificacion_id serial4 NOT NULL,
+	descripcion varchar NOT NULL
+);
+
+CREATE TABLE public.estado_civil (
+	estado_civil_id serial4 NOT NULL,
+	descripcion varchar NOT NULL
+);
+
+CREATE TABLE public.grupo_familiar (
+	grupo_familiar_id serial4 NOT NULL,
+	nombres varchar NOT NULL,
+	apellidos varchar NOT NULL,
+	telefono varchar NOT NULL,
+	rol varchar NOT NULL
+);
+
+CREATE TABLE public.informacion_academica (
+	informacion_academica_id serial4 NOT NULL,
+	nombre_universidad varchar NOT NULL,
+	nivel_estudio varchar NOT NULL,
+	titulo varchar NOT NULL
+);
+
+
+ALTER TABLE public.informacion_academica ADD CONSTRAINT informacion_academica_pk PRIMARY KEY (informacion_academica_id);
+ALTER TABLE public.funcionarios ADD CONSTRAINT funcionarios_pk PRIMARY KEY (funcionario_id);
+ALTER TABLE public.estado_civil ADD CONSTRAINT estado_civil_pk PRIMARY KEY (estado_civil_id);
+ALTER TABLE public.grupo_familiar ADD CONSTRAINT grupo_familiar_pk PRIMARY KEY (grupo_familiar_id);
+ALTER TABLE public.tipo_identificacion ADD CONSTRAINT tipo_identificacion_pk PRIMARY KEY (tipo_identificacion_id);
+ALTER TABLE public.funcionarios ADD CONSTRAINT funcionarios_fk FOREIGN KEY (tipo_identificacion_id) REFERENCES public.tipo_identificacion(tipo_identificacion_id);
+ALTER TABLE public.funcionarios ADD CONSTRAINT funcionarios_fk_1 FOREIGN KEY (estado_civil_id) REFERENCES public.estado_civil(estado_civil_id);
+ALTER TABLE public.funcionarios ADD CONSTRAINT funcionarios_fk_3 FOREIGN KEY (grupo_familiar_id) REFERENCES public.grupo_familiar(grupo_familiar_id);
+ALTER TABLE public.funcionarios ADD CONSTRAINT funcionarios_fk_4 FOREIGN KEY (informacion_academica_id) REFERENCES public.informacion_academica(informacion_academica_id);
+
+ALTER SEQUENCE funcionarios_funcionario_id_seq RESTART WITH 1;
+
